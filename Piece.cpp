@@ -27,8 +27,7 @@ list<pair<int,int> > Piece::getCoords (){
     return piece;
 }
 
-int Piece::getSize()
-{
+int Piece::getSize(){
     return piece.size();
 }
 
@@ -43,4 +42,3 @@ void Piece::mostrar(){
 
 Piece::~Piece() {
 }
-
