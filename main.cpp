@@ -1,18 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   main.cpp
- * Author: Carolina
- *
- * Created on 19 de enero de 2016, 23:20
- */
-
 #include <cstdlib>
 #include <iostream>
+#include "Piece.h"
 
 using namespace std;
 
@@ -20,6 +8,173 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
+    
+    ////////////////////////////////// PIEZAS //////////////////////////////////
+    
+    Piece p0 = Piece(0);
+    p0.addCoord(0,0);
+    
+    Piece p1 = Piece(1);     //Palito de 2 vertical
+    p1.addCoord(0,0);
+    p1.addCoord(0,1);
+    
+    Piece p2 = Piece(2);     //Palito de 2 horizontal
+    p2.addCoord(0,0);
+    p2.addCoord(1,0);
+    
+    Piece p3 = Piece(3);     //Palito de 3 vertical
+    p3.addCoord(0,0);
+    p3.addCoord(0,1);
+    p3.addCoord(0,2);
+    
+    Piece p4 = Piece(4);     //Palito de 3 horizontal
+    p4.addCoord(0,0);
+    p4.addCoord(1,0);
+    p4.addCoord(2,0);
+    
+    Piece p5 = Piece(5);     //Palito de 4 vertical
+    p5.addCoord(0,0);
+    p5.addCoord(0,1);
+    p5.addCoord(0,2);
+    p5.addCoord(0,3);
+    
+    Piece p6 = Piece(6);     //Palito de 4 horizontal
+    p6.addCoord(0,0);
+    p6.addCoord(1,0);
+    p6.addCoord(2,0);
+    p6.addCoord(3,0);
+    
+    Piece p7 = Piece(7);     //Palito de 5 vertical
+    p7.addCoord(0,0);
+    p7.addCoord(0,1);
+    p7.addCoord(0,2);
+    p7.addCoord(0,3);
+    p7.addCoord(0,4);
+    
+    Piece p8 = Piece(8);     //Palito de 5 horizontal
+    p8.addCoord(0,0);
+    p8.addCoord(1,0);
+    p8.addCoord(2,0);
+    p8.addCoord(3,0);
+    p8.addCoord(4,0);
+    
+    Piece p9 = Piece(9);     //cuadrado 2x2
+    p9.addCoord(0,0);
+    p9.addCoord(0,1);
+    p9.addCoord(1,0);
+    p9.addCoord(1,1);
+
+    Piece p10 = Piece(10);   //cuadrado 3x3
+    p10.addCoord(0,0);
+    p10.addCoord(0,1);
+    p10.addCoord(0,2);
+    p10.addCoord(1,0);
+    p10.addCoord(1,1);
+    p10.addCoord(1,2);
+    p10.addCoord(2,0);
+    p10.addCoord(2,1);
+    p10.addCoord(2,2);
+    
+    Piece p11 = Piece(11);   // ■ ■
+    p11.addCoord(0,0);       // ■
+    p11.addCoord(1,0);
+    p11.addCoord(0,1);
+    
+    Piece p12 = Piece(12);   //   ■
+    p12.addCoord(0,0);       // ■ ■
+    p12.addCoord(0,1);
+    p12.addCoord(-1,1);
+    
+    Piece p13 = Piece(13);   // ■ ■
+    p13.addCoord(0,0);       //   ■
+    p13.addCoord(1,0);
+    p13.addCoord(1,1);
+    
+    Piece p14 = Piece(14);   // ■
+    p14.addCoord(0,0);       // ■ ■
+    p14.addCoord(0,1);
+    p14.addCoord(1,1);
+    
+    Piece p15 = Piece(15);   // ■ ■ ■
+    p15.addCoord(0,0);       // ■
+    p15.addCoord(1,0);       // ■
+    p15.addCoord(2,0);
+    p15.addCoord(0,1);
+    p15.addCoord(0,2);
+    
+    Piece p16 = Piece(16);   //     ■
+    p16.addCoord(0,0);       //     ■
+    p16.addCoord(0,1);       // ■ ■ ■
+    p16.addCoord(0,2);
+    p16.addCoord(-1,2);
+    p16.addCoord(-2,2);
+    
+    Piece p17 = Piece(17);   // ■ ■ ■
+    p17.addCoord(0,0);       //     ■
+    p17.addCoord(1,0);       //     ■
+    p17.addCoord(2,0);
+    p17.addCoord(2,1);
+    p17.addCoord(2,2);
+    
+    Piece p18 = Piece(18);   // ■
+    p18.addCoord(0,0);       // ■
+    p18.addCoord(0,1);       // ■ ■ ■
+    p18.addCoord(0,2);
+    p18.addCoord(1,2);
+    p18.addCoord(2,2);
+    
+    /*Piece p19 = Piece(19);   //pieza grande
+    p19.addCoord(0,0);
+    p19.addCoord(0,1);
+    p19.addCoord(0,2);
+    p19.addCoord(0,3);
+    p19.addCoord(0,4);
+    p19.addCoord(0,5);
+    p19.addCoord(0,6);
+    p19.addCoord(1,0);
+    p19.addCoord(2,0);
+    p19.addCoord(3,0);
+    p19.addCoord(4,0);
+    p19.addCoord(5,0);
+    p19.addCoord(6,0);
+    p19.addCoord(1,6);
+    p19addCoord(2,6);
+    p19.addCoord(3,6);
+    p19.addCoord(4,6);
+    p19.addCoord(5,6);
+    p19.addCoord(6,6);
+    
+    Piece p20 = Piece(20);
+    p20.addCoord(0,0);
+    p20.addCoord(1,0);
+    p20.addCoord(2,0);
+    p20.addCoord(3,0);
+    p20.addCoord(4,0);
+    p20.addCoord(5,0);
+    p20.addCoord(6,0);
+    p20.addCoord(7,0);
+    p20.addCoord(8,0);
+    p20.addCoord(0,1);
+    p20.addCoord(0,2);
+    p20.addCoord(0,3);
+    p20.addCoord(0,4);
+    p20.addCoord(0,5);
+    p20.addCoord(0,6);
+    p20.addCoord(0,7);
+    p20.addCoord(0,8);
+    p20.addCoord(1,1);
+    p20.addCoord(1,2);
+    p20.addCoord(1,3);
+    p20.addCoord(1,4);
+    p20.addCoord(1,5);
+    p20.addCoord(1,6);
+    p20.addCoord(1,7);
+    p20.addCoord(1,8);*/
+
+    
+    ////////////////////////////////////////////////////////////////////////////
+    
+    
     cout << "Hello World!" << endl;
     return 0;
 }
