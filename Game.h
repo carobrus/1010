@@ -10,7 +10,7 @@ class Game {
 public:
     Game();                                 //crea un tablero y setea el score en 0.
     //Game(const Game& orig);
-    void copyGame(Game copia);              //copia el score y el tablero.
+    //void copyGame(Game copia);              //copia el score y el tablero.
     Board getBoard();
     bool checkPiece(Piece,int,int);         //chequea que la pieza pueda colocarse. True si esta ocupado, false si esta libre.
     bool addPieceToBoard(Piece, int, int);  //añade una pieza al tablero.

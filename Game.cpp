@@ -17,11 +17,11 @@ Game::Game()
 //Game::Game(const Game& orig) {
 //}
 
-void Game::copyGame(Game copia){
+/*void Game::copyGame(Game copia){
     copia.setScore(this->score);
     Board auxBoard = (copia.getBoard());
     board->copyBoard(auxBoard);
-}
+}*/
 
 Board Game::getBoard(){
     return *board;

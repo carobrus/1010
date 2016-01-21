@@ -9,6 +9,13 @@ using namespace std;
 
 int main(int argc, char** argv) {
     
+    /*Board tomas;
+    tomas.setSquare(2,5);
+    tomas.printBoard();
+    Board franco(tomas);
+    franco.printBoard(); //verificacion constructor por copia de tablero*/
+    
+    
     ////////////////////////////////// PIEZAS //////////////////////////////////
     
     Piece p0 = Piece(0);
@@ -173,7 +180,7 @@ int main(int argc, char** argv) {
 
     
     ////////////////////////////////////////////////////////////////////////////
-        
+       
     Game game = Game();
     game.addPieceToGame(p0);
     game.addPieceToGame(p1);
@@ -294,5 +301,5 @@ int main(int argc, char** argv) {
     ////////////////////////////////////////////////////////////////////////////
     
     
-        return 0;
+    return 0;
 }

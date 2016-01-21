@@ -6,7 +6,7 @@ using namespace std;
 
 
 Board::Board(){
-    //cout << "Construyendo board" << endl;
+    cout << "Construyendo board" << endl;
     height = 10;
     width = 10;
     matriz = new bool*[height];
@@ -15,8 +15,22 @@ Board::Board(){
     flushBoard();
 }
 
-//Board::Board(const Board& orig) {
-//}
+Board::Board(const Board& orig) {
+    cout << "Constructor por copia de board" << endl;
+    height = orig.getHeight();
+    width = orig.getWidth();
+    
+    matriz = new bool*[orig.getHeight()];
+    for (int r=0; r<orig.getHeight(); r++)
+        matriz[r] = new bool[orig.getWidth()];
+
+    for (int i=0; i<height; i++)
+        for (int j=0; j<width; j++)
+            if (orig.checkSquare(i,j))
+                matriz[i][j] = 1;
+            else
+                matriz[i][j] = 0;
+}
 
 Board::Board(int height, int width){
     this->height = height;
@@ -63,32 +77,34 @@ void Board::setSquare(int r, int c){
     matriz[r][c] = 1;
 }
 
-bool Board::checkSquare(int r, int c){
+bool Board::checkSquare(int r, int c) const{
     if ((r<height) && (r>=0) && (c<width) && (c>=0))
         return (matriz[r][c]);
     return true;
 }
 
 void Board::printBoard(){
-    cout << endl << " - - - - - - - - - - " << endl;
+    cout << endl << "  0 1 2 3 4 5 6 7 8 9 ";
+    cout << endl << "  - - - - - - - - - - " << endl;
     for (int r=0; r<height; r++){
-        cout << "|";
+        cout << r << "|";
         for (int c=0; c<width; c++)
-            if (!matriz[c][r])
+            if (matriz[c][r] == 0)
                 cout << " |";
             else
                 {char a=219;
                 cout << a << "|" ;}
-        cout << endl << " - - - - - - - - - - " << endl;
+        cout << endl << "  - - - - - - - - - - " << endl;
     }
+    cout << "  0 1 2 3 4 5 6 7 8 9" << endl;
     cout << endl;
 }
 
-int Board::getHeight(){
+int Board::getHeight() const{
     return height;
 }
 
-int Board::getWidth(){
+int Board::getWidth() const{
     return width;
 }
 
@@ -121,17 +137,8 @@ int Board::cleanLines(){
     return (amountC + amountR);
 }
 
-void Board::copyBoard(Board copia){
-    for (int i=0; i<height; i++)
-        for (int j=0; j<width; j++)
-        {
-            if (matriz[i][j] == 1)
-                copia.setSquare(i,j);
-        }
-}
-
 Board::~Board(){
-    //cout << "Destruyendo board" << endl;
+    cout << "Destruyendo board" << endl;
     for (int r=0; r<height; r++)
         delete [] matriz[r];
     delete [] matriz;
