@@ -14,17 +14,14 @@ Game::Game()
     score = 0;
 }
 
-//Game::Game(const Game& orig) {
-//}
+Game::Game(const Game& orig) {
+    board = new Board(orig.getBoard());
+    score = orig.getScore();
+    pieces = orig.getPieces();
+}
 
-/*void Game::copyGame(Game copia){
-    copia.setScore(this->score);
-    Board auxBoard = (copia.getBoard());
-    board->copyBoard(auxBoard);
-}*/
-
-Board Game::getBoard(){
-    return *board;
+Board Game::getBoard() const{
+    return * board;
 }
 
 bool Game::checkPiece(Piece p, int x, int y){ //chequea que la pieza pueda colocarse. true si esta ocupado, false si esta libre
@@ -55,10 +52,9 @@ bool Game::addPieceToBoard(Piece p, int x, int y){
     }
 }
 
-/*list<Piece> Game::getPieces(){
-    
-}*/
-
+list<Piece> Game::getPieces() const{
+    return pieces;
+}
 
 void Game::addPieceToGame(Piece p){
     pieces.push_back(p);
@@ -118,7 +114,7 @@ void Game::increaseScore(Piece P){
     score = score + (P.getSize());
 }
 
-int Game::getScore(){
+int Game::getScore() const{
     return score;
 }
 

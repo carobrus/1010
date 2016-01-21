@@ -15,9 +15,6 @@ int main(int argc, char** argv) {
     Board franco(tomas);
     franco.printBoard(); //verificacion constructor por copia de tablero*/
     
-    
-    ////////////////////////////////// PIEZAS //////////////////////////////////
-    
     Piece p0 = Piece(0);
     p0.addCoord(0,0);
     
@@ -28,6 +25,47 @@ int main(int argc, char** argv) {
     Piece p2 = Piece(2);     //Palito de 2 horizontal
     p2.addCoord(0,0);
     p2.addCoord(1,0);
+    
+    Game game = Game();
+    game.addPieceToGame(p0);
+    game.addPieceToGame(p1);
+    game.addPieceToGame(p2);
+    game.setScore(5);
+    game.addPieceToBoard(p0,3,7);
+    game.printBoard();
+    cout << game.getScore();
+    list<Piece> lista = game.getPieces();
+    
+    list<Piece>:: iterator it_show = lista.begin();
+    for (int i=0; i<lista.size(); i++){
+        cout << "Pieza ID: "<< (*it_show).getID() << endl;
+        it_show++;
+    }
+    
+    Game copia(game);
+    copia.printBoard();
+    cout << "Score:" <<copia.getScore() << endl;
+    
+    list<Piece> lista2 = copia.getPieces();
+        list<Piece>:: iterator it_show2 = lista2.begin();
+    for (int i=0; i<lista2.size(); i++){
+        cout << "Pieza ID: "<< (*it_show2).getID() << endl;
+        it_show2++;
+    }
+    
+    ////////////////////////////////// PIEZAS //////////////////////////////////
+    /*
+    Piece p0 = Piece(0);
+    p0.addCoord(0,0);
+    
+    Piece p1 = Piece(1);     //Palito de 2 vertical
+    p1.addCoord(0,0);
+    p1.addCoord(0,1);
+    
+    Piece p2 = Piece(2);     //Palito de 2 horizontal
+    p2.addCoord(0,0);
+    p2.addCoord(1,0);
+    
     
     Piece p3 = Piece(3);     //Palito de 3 vertical
     p3.addCoord(0,0);
@@ -180,7 +218,7 @@ int main(int argc, char** argv) {
 
     
     ////////////////////////////////////////////////////////////////////////////
-       
+    /*   
     Game game = Game();
     game.addPieceToGame(p0);
     game.addPieceToGame(p1);
@@ -296,7 +334,7 @@ int main(int argc, char** argv) {
     cout << "      `---`           '---' |   | ,'  |   |.'           " << endl;
     cout << "                            `----'    `---'             " << endl;
     char e;
-    cin >> e;
+    cin >> e;*/
     
     ////////////////////////////////////////////////////////////////////////////
     

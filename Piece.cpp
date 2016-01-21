@@ -4,17 +4,19 @@
 using namespace std;
 
 
-Piece::Piece() {
+Piece::Piece(){
 }
 
-//Piece::Piece(const Piece& orig) {
-//}
+Piece::Piece(const Piece& orig){
+    ID = orig.getID();
+    piece = orig.getCoords();
+}
 
-Piece::Piece(int num) {
+Piece::Piece(int num){
     ID = num;
 }
 
-int Piece::getID(){
+int Piece::getID() const{
     return ID;
 }
 
@@ -23,7 +25,7 @@ void Piece::addCoord(int x, int y){
     piece.push_back(coord);
 }
 
-list<pair<int,int> > Piece::getCoords (){
+list<pair<int,int> > Piece::getCoords() const{
     return piece;
 }
 
@@ -40,5 +42,5 @@ void Piece::mostrar(){
     }
 }
 
-Piece::~Piece() {
+Piece::~Piece(){
 }

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Backtracking.o \
 	${OBJECTDIR}/Board.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/Piece.o \
@@ -64,6 +65,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/1010__2.0_.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/1010__2.0_ ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Backtracking.o: Backtracking.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Backtracking.o Backtracking.cpp
 
 ${OBJECTDIR}/Board.o: Board.cpp 
 	${MKDIR} -p ${OBJECTDIR}
