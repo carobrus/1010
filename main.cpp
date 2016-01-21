@@ -1,12 +1,12 @@
 #include <cstdlib>
 #include <iostream>
-#include "Piece.h"
+#include "Game.h"
+//#include "Piece.h"
+//#include "Board.h"
 
 using namespace std;
 
-/*
- * 
- */
+
 int main(int argc, char** argv) {
     
     ////////////////////////////////// PIEZAS //////////////////////////////////
@@ -173,9 +173,126 @@ int main(int argc, char** argv) {
 
     
     ////////////////////////////////////////////////////////////////////////////
+        
+    Game game = Game();
+    game.addPieceToGame(p0);
+    game.addPieceToGame(p1);
+    game.addPieceToGame(p2);
+    game.addPieceToGame(p3);
+    game.addPieceToGame(p4);
+    game.addPieceToGame(p5);
+    game.addPieceToGame(p6);
+    game.addPieceToGame(p7);
+    game.addPieceToGame(p8);
+    game.addPieceToGame(p9);
+    game.addPieceToGame(p10);
+    game.addPieceToGame(p11);
+    game.addPieceToGame(p12);
+    game.addPieceToGame(p13);
+    game.addPieceToGame(p14);
+    game.addPieceToGame(p15);
+    game.addPieceToGame(p16);
+    game.addPieceToGame(p17);
+    game.addPieceToGame(p18);
+    //game.addPieceToGame(p19);
+    //game.addPieceToGame(p20);
     
     
-    cout << "Hello World!" << endl;
-    return 0;
+    ////////////////////////////// BUCLE DEL JUEGO /////////////////////////////
+    list<Piece> hand;
+    while (hand.empty()){
+        hand = game.getPiecesToPlay();
+        while ((!hand.empty()) && (game.movesLeft(hand))){
+            //system("cls");
+            game.printBoard();
+            cout << endl;
+            
+            list<Piece>:: iterator it_show = hand.begin();
+            for (int i=0; i<hand.size(); i++){
+            cout << "Pieza ID: "<< (*it_show).getID() << endl;
+            it_show++;
+            }
+            
+            cout << endl << endl << "Score:  " << game.getScore() << endl;
+            
+            int x=0;
+            int y=0;
+            int pieza=0;
+            
+            cout << endl << "elegi la pieza: ";
+            cin >> pieza;
+            cout << pieza << endl << "elegi la x: ";
+            cin >> x;
+            cout << x << endl << "elegi la y: ";
+            cin >> y;
+            cout << y << endl;
+            
+            list<Piece>:: iterator it = hand.begin();
+            switch (pieza)
+            {
+                case 0:
+                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
+                        game.refreshBoard(*it);
+                        hand.erase(it);
+                    }
+                    break;
+                case 1:
+                    for (int i=0; i<1; i++){
+                    it++;}
+                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
+                        game.refreshBoard(*it);
+                        hand.erase(it);
+                    }
+                    break;
+                case 2:
+                    for (int i=0; i<2; i++){
+                    it++;}
+                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
+                        game.refreshBoard(*it);
+                        hand.erase(it);
+                    }
+                    break;
+            }
+        }
+    }
+    
+    
+    //system("cls");
+    
+    cout << endl;
+    cout << "                                       ____             " << endl;
+    cout << "    ,----..      ,---,               ,'  , `.    ,---,. " << endl;
+    cout << "   /   /   \\    '  .' \\           ,-+-,.' _ |  ,'  .' | " << endl;
+    cout << "  |   :     :  /  ;    '.      ,-+-. ;   , ||,---.'   | " << endl;
+    cout << "  .   |  ;. / :  :       \\    ,--.'|'   |  ;||   |   .' " << endl;
+    cout << "  .   ; /--`  :  |   /\\   \\  |   |  ,', |  '::   :  |-, " << endl;
+    cout << "  ;   | ;  __ |  :  ' ;.   : |   | /  | |  ||:   |  ;/| " << endl;
+    cout << "  |   : |.' .'|  |  ;/  \\   \\'   | :  | :  |,|   :   .' " << endl;
+    cout << "  .   | '_.' :'  :  | \\  \\ ,';   . |  ; |--' |   |  |-, " << endl;
+    cout << "  '   ; : \\  ||  |  '  '--'  |   : |  | ,    '   :  ;/| " << endl;
+    cout << "  '   | '/  .'|  :  :        |   : '  |/     |   |    \\ " << endl;
+    cout << "  |   :    /  |  | ,'        ;   | |`-'      |   :   .' " << endl;
+    cout << "   \\   \\ .'   `--''          |   ;/          |   | ,'   " << endl;
+    cout << "    `---`                    '---'           `----'     " << endl;
+    cout << "      ,----..                                           " << endl;
+    cout << "     /   /   \\                  ,---,.,-.----.          " << endl;
+    cout << "    /   .     :        ,---.  ,'  .' |\\    /  \\         " << endl;
+    cout << "   .   /   ;.  \\      /__./|,---.'   |;   :    \\        " << endl;
+    cout << "  .   ;   /  ` ; ,---.;  ; ||   |   .'|   | .\\ :        " << endl;
+    cout << "  ;   |  ; \\ ; |/___/ \\  | |:   :  |-,.   : |: |        " << endl;
+    cout << "  |   :  | ; | '\\   ;  \\ ' |:   |  ;/||   |  \\ :        " << endl;
+    cout << "  .   |  ' ' ' : \\   \\  \\: ||   :   .'|   : .  /        " << endl;
+    cout << "  '   ;  \\; /  |  ;   \\  ' .|   |  |-,;   | |  \\        " << endl;
+    cout << "   \\   \\  ',  /    \\   \\   ''   :  ;/||   | ;\\  \\       " << endl;
+    cout << "    ;   :    /      \\   `  ;|   |    \\:   ' | \\.'       " << endl;
+    cout << "     \\   \\ .'        :   \\ ||   :   .':   : :-'         " << endl;
+    cout << "      `---`           '---' |   | ,'  |   |.'           " << endl;
+    cout << "                            `----'    `---'             " << endl;
+    char e;
+    cin >> e;
+    
+    ////////////////////////////////////////////////////////////////////////////
+    
+    
+        return 0;
 }
-

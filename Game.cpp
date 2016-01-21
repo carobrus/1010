@@ -14,8 +14,8 @@ Game::Game()
     score = 0;
 }
 
-Game::Game(const Game& orig) {
-}
+//Game::Game(const Game& orig) {
+//}
 
 void Game::copyGame(Game copia){
     copia.setScore(this->score);

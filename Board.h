@@ -4,7 +4,7 @@
 class Board {
 public:
     Board();                    //inicializa el tablero con tamaño 10x10 y en cero.
-    Board(const Board& orig);   //constructor por copia. Vacio.
+    //Board(const Board& orig);   //constructor por copia. Vacio.
     Board(int,int);             //inicializa el tablero en cero del tamaño que se quiera.
     void flushBoard();          //llena la matriz de ceros (vacia el tablero).
     void flushRow(int);         //vacia una fila.

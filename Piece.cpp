@@ -7,8 +7,8 @@ using namespace std;
 Piece::Piece() {
 }
 
-Piece::Piece(const Piece& orig) {
-}
+//Piece::Piece(const Piece& orig) {
+//}
 
 Piece::Piece(int num) {
     ID = num;

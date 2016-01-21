@@ -15,8 +15,8 @@ Board::Board(){
     flushBoard();
 }
 
-Board::Board(const Board& orig) {
-}
+//Board::Board(const Board& orig) {
+//}
 
 Board::Board(int height, int width){
     this->height = height;

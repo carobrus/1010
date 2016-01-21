@@ -10,7 +10,7 @@ using namespace std;
 class Piece {
 public:
     Piece();
-    Piece(const Piece& orig);
+    //Piece(const Piece& orig);
     Piece(int);                             //constructor con inicializador de ID
     int getID();                            //devuelve ID
     void addCoord(int, int);                //añade una coordenada a la pieza.
