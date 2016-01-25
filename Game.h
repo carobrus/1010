@@ -27,6 +27,8 @@ public:
     int getScore() const;                   //devuelve el puntaje.
     void refreshBoard(Piece);               //limpia el tablero de filas y columnas ocupadas aumentado el score segun la pieza y la cantidad de lineas eliminadas.
     void setSquare(int,int);                //marca un casillero como ocupado.
+    void reset();                           //borra el tablero y el score.
+    Game& operator =(const Game &orig);     //sobrecarga de operador de asignacion.
     virtual ~Game();                        //destructor.
 private:
     Board * board;

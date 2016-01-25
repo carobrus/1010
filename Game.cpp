@@ -65,7 +65,7 @@ list<Piece> Game::getPiecesToPlay(){
     list<Piece> aux;
     for (int i=0; i<3; i++){
         int random = rand()%(pieces.size()); //genera un numero entre 0 y el .size
-        cout << "Random: " << random << endl;
+        //cout << "Random: " << random << endl;
         list<Piece>::iterator it = pieces.begin();
         for (int j=0; j<random; j++)
             it++;
@@ -126,6 +126,20 @@ void Game::refreshBoard(Piece P){
 void Game::setSquare(int r, int c){
     board->setSquare(r,c);
 }
+
+void Game::reset(){
+    this->score = 0;
+    board->flushBoard();
+}
+ 
+Game& Game::operator =(const Game &orig){
+    this->score = orig.getScore();
+    //delete board;
+    this->board = new Board(orig.getBoard());
+    this->pieces = orig.getPieces(); 
+    return *(this);
+}
+
 
 Game::~Game() {
     delete board;

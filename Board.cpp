@@ -6,7 +6,6 @@ using namespace std;
 
 
 Board::Board(){
-    cout << "Construyendo board" << endl;
     height = 10;
     width = 10;
     matriz = new bool*[height];
@@ -16,7 +15,6 @@ Board::Board(){
 }
 
 Board::Board(const Board& orig) {
-    cout << "Constructor por copia de board" << endl;
     height = orig.getHeight();
     width = orig.getWidth();
     
@@ -138,7 +136,6 @@ int Board::cleanLines(){
 }
 
 Board::~Board(){
-    cout << "Destruyendo board" << endl;
     for (int r=0; r<height; r++)
         delete [] matriz[r];
     delete [] matriz;
