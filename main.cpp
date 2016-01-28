@@ -2,8 +2,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Backtracking.h"
-//#include "Piece.h"
-//#include "Board.h"
+#include <windows.h>
 
 using namespace std;
 
@@ -188,10 +187,10 @@ int main(int argc, char** argv) {
     p21.addCoord(3,0);
     p21.addCoord(3,1);
     p21.addCoord(3,2);
-    p21.addCoord(3,3);
+    p21.addCoord(3,3);*/
 
     Piece p22 = Piece(22);     // ■ ■ ■ ■ ■ ■ ■
-    p22.addCoord(0,0);         // ■ ■ 
+    p22.addCoord(0,0);         // ■
     p22.addCoord(1,0);         // ■
     p22.addCoord(2,0);         // ■
     p22.addCoord(3,0);         // ■
@@ -206,8 +205,8 @@ int main(int argc, char** argv) {
     p22.addCoord(0,5);
     p22.addCoord(0,6);
     p22.addCoord(0,7);
-        
-    Piece p23 = Piece(23);   //cuadrado 3x3
+    
+    /*Piece p23 = Piece(23);   //cuadrado 3x3
     p23.addCoord(0,0);
     p23.addCoord(0,1);
     p23.addCoord(0,2);
@@ -217,55 +216,51 @@ int main(int argc, char** argv) {
     p23.addCoord(2,0);
     p23.addCoord(2,1);
     p23.addCoord(2,2);*/
+    
+    Piece p24 = Piece(24);     // ■ ■ ■ ■ ■ ■ ■ //■
+    p24.addCoord(0,0);
+    p24.addCoord(1,0);
+    p24.addCoord(2,0);
+    p24.addCoord(3,0);
+    p24.addCoord(4,0);
+    p24.addCoord(5,0);
+    p24.addCoord(6,0);
+    //p24.addCoord(7,0);
+            
+    
+    Piece p25 = Piece(25);
+    p25.addCoord(0,0);          // ■
+    p25.addCoord(0,1);          // ■
+    p25.addCoord(0,2);          // ■
+    p25.addCoord(0,3);          // ■
+    p25.addCoord(0,4);          // ■
+    p25.addCoord(0,5);          // ■
+    p25.addCoord(0,6);          // ■
+    //p25.addCoord(0,7);          // ■
 
     ////////////////////////////////////////////////////////////////////////////
 
     Game game = Game();
-    
-    /*game.addPieceToGame(p0);
-    game.addPieceToGame(p1);
-    game.addPieceToGame(p2);
-    game.addPieceToGame(p3);
-    game.addPieceToGame(p4);
-    game.addPieceToGame(p5);
-    game.addPieceToGame(p6);
-    game.addPieceToGame(p7);
-    game.addPieceToGame(p8);
-    game.addPieceToGame(p9);
-    game.addPieceToGame(p10);
-    game.addPieceToGame(p11);
-    game.addPieceToGame(p12);
-    game.addPieceToGame(p13);
-    game.addPieceToGame(p14);
-    game.addPieceToGame(p15);
-    game.addPieceToGame(p16);
-    game.addPieceToGame(p17);
-    game.addPieceToGame(p18);*/
-    /*//game.addPieceToGame(p19);
-    //game.addPieceToGame(p20);
-    game.addPieceToGame(p21);
-    //game.addPieceToGame(p22);
-    game.addPieceToGame(p23);*/
-    
-    game.addPieceToGame(p0);
-    game.addPieceToGame(p1);
-    game.addPieceToGame(p2);
-    game.addPieceToGame(p3);
-    game.addPieceToGame(p4);
-    game.addPieceToGame(p5);
-    game.addPieceToGame(p6);
-    game.addPieceToGame(p7);
-    game.addPieceToGame(p8);
-    game.addPieceToGame(p9);
-    game.addPieceToGame(p10);
-    game.addPieceToGame(p11);
-    game.addPieceToGame(p12);
-    game.addPieceToGame(p13);
-    game.addPieceToGame(p14);
-    game.addPieceToGame(p15);
-    game.addPieceToGame(p16);
-    game.addPieceToGame(p17);
-    game.addPieceToGame(p18);
+    list<Piece> pieces;
+    pieces.push_back(p0);
+    pieces.push_back(p1);
+    pieces.push_back(p2);
+    pieces.push_back(p3);
+    pieces.push_back(p4);
+    pieces.push_back(p5);
+    pieces.push_back(p6);
+    pieces.push_back(p7);
+    pieces.push_back(p8);
+    pieces.push_back(p9);
+    pieces.push_back(p10);
+    pieces.push_back(p11);
+    pieces.push_back(p12);
+    pieces.push_back(p13);
+    pieces.push_back(p14);
+    pieces.push_back(p15);
+    pieces.push_back(p16);
+    pieces.push_back(p17);
+    pieces.push_back(p18);
 
     ////////////////////////////// BUCLE DEL JUEGO /////////////////////////////
     /*list<Piece> hand;
@@ -327,70 +322,33 @@ int main(int argc, char** argv) {
     
     ///////////////////////////////Backtracking/////////////////////////////////
     
-    /*list<Piece> hand;
-    hand = game.getPiecesToPlay();
-    
     Game solucion = Game();
-    while (game.movesLeft(hand)){
-        
-        //imprimir tablero y piezas.
-        game.printBoard();
-        cout << endl;
-        list<Piece>:: iterator it_show = hand.begin();
-        for (int i=0; i<hand.size(); i++){
-            cout << "Pieza ID: "<< (*it_show).getID() << endl;
-            it_show++;
-        }
-
-        //arranca backtracking
-        Backtracking bt;
-        bt.vueltaAtras(&game,&solucion,hand,0,3);
-            
-        cout << "---------- PRIMERA MANO ----------" << endl;
-        /*if (sigue == false)
-            cout << "PERDISTE, MUAJAJAJA!" << endl;
-        else{
-            cout << endl << endl << "Solucion: " << endl;
-            solucion.printBoard();
-            cout << endl << "Score:  " << solucion.getScore() << endl;
-        }
-        int x;
-        cin >> x;
-        //game = solucion;
-        hand = game.getPiecesToPlay();
-    }*/
-     
-    bool terminar = false;
     Backtracking bt;
-    list<Piece> hand = game.getPiecesToPlay();
-    Game solucion = Game();
-
+    bool terminar = false;
+    bool visitados [game.getHandSize()]; 
+    Piece hand [game.getHandSize()];
+    
     while (terminar!=true){
- 
-        list<Piece>:: iterator it_show = hand.begin();
-        for (int i=0; i<hand.size(); i++){
-            cout << "Pieza ID: "<< (*it_show).getID() << endl;
-            it_show++;
-        }
+        
+        game.getPiecesToPlay(pieces, hand);
+        
+        for (int i=0; i<game.getHandSize(); i++)
+            cout << "Pieza ID: "<< hand[i].getID() << endl;
 
         solucion.reset();
-        cout << "antes" << endl;
-        bt.vueltaAtras(game,solucion,hand,0,3);
-
-        cout << "despues" << endl;
-        game=solucion;
-        game.printBoard();
-        cout << "termino el BT" << endl;
+        bt.vueltaAtras(game,solucion,hand,visitados, 0,game.getHandSize());
+        
+        cout << "Solucion: " << endl;
+        solucion.printBoard();
         cout << "Score de solucion: " << solucion.getScore() << endl;
         if (solucion.getScore()==0)
             terminar = true;
+        cout << "Score: " << game.getScore() << endl;
+        game=solucion;
         
-        cout << "Insertar numero para seguir: ";
-        //int x;
-        //cin >> x;
+        Sleep(100);
+        //cout << "Insertar numero para seguir: "; int x; cin >> x;
         
-        hand.clear();
-        hand = game.getPiecesToPlay();
     }
     
 //arreglar puntaje

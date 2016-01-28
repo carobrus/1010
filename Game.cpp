@@ -12,22 +12,26 @@ Game::Game()
     //cout << "Constructor Game" << endl;
     board = new Board();
     score = 0;
+    handSize = 3;
 }
 
 Game::Game(const Game& orig) {
     board = new Board(orig.getBoard());
     score = orig.getScore();
-    pieces = orig.getPieces();
+    handSize = orig.getHandSize();
 }
 
 Board Game::getBoard() const{
     return * board;
 }
 
+int Game::getHandSize() const{
+    return handSize;
+}
+
 bool Game::checkPiece(Piece p, int x, int y){ //chequea que la pieza pueda colocarse. true si esta ocupado, false si esta libre
     list<pair<int,int> > aux=p.getCoords();
-    while (aux.size() != 0)
-    {
+    while (aux.size() != 0){
         if (board->checkSquare(aux.front().first+x, aux.front().second+y))
             return true;
         aux.pop_front();
@@ -44,34 +48,20 @@ bool Game::addPieceToBoard(Piece p, int x, int y){
             aux.pop_front();
         }
         return true;
-        cout << "la metio " << endl;
     }
-    else{
-        cout << "no la metio" << endl;
+    else
         return false;
-    }
 }
 
-list<Piece> Game::getPieces() const{
-    return pieces;
-}
-
-void Game::addPieceToGame(Piece p){
-    pieces.push_back(p);
-}
-
-list<Piece> Game::getPiecesToPlay(){
+void Game::getPiecesToPlay(list<Piece> pieces, Piece aux []){
     srand(time(NULL)); //inicializa la seed
-    list<Piece> aux;
-    for (int i=0; i<3; i++){
+    for (int i=0; i<getHandSize(); i++){
         int random = rand()%(pieces.size()); //genera un numero entre 0 y el .size
-        //cout << "Random: " << random << endl;
         list<Piece>::iterator it = pieces.begin();
         for (int j=0; j<random; j++)
             it++;
-        aux.push_back(*it);
+        aux[i] = (*it);
     }
-    return aux;
 }
 
 void Game::printBoard(){
@@ -104,7 +94,6 @@ void Game::setScore(int score){
     this->score = score;
 }
 
-
 void Game::increaseScore(int amount){
     if (amount > 0)
         score = score + (10*pow(2,amount-1));
@@ -136,10 +125,8 @@ Game& Game::operator =(const Game &orig){
     this->score = orig.getScore();
     //delete board;
     this->board = new Board(orig.getBoard());
-    this->pieces = orig.getPieces(); 
     return *(this);
 }
-
 
 Game::~Game() {
     delete board;

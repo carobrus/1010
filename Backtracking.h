@@ -8,7 +8,7 @@ class Backtracking {
 public:
     Backtracking();
     //Backtracking(const Backtracking& orig);
-    void vueltaAtras(Game, Game&, list<Piece>, int, int);
+    void vueltaAtras(Game, Game&, Piece [], bool [], int, int);
     virtual ~Backtracking();
 private:
 
