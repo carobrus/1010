@@ -16,7 +16,6 @@ public:
     void addCoord(int, int);                //añade una coordenada a la pieza.
     list<pair<int,int> > getCoords() const; //devuelve la forma de la pieza en una lista de pares.
     int getSize();                          //devuelve la cantidad de coordenadas que tiene la pieza. El tamaño de la lista de pares piece.
-    void mostrar();                         //imprime las coordenadas de la pieza. Utilizado para control y debbuging.
     virtual ~Piece();
 private:
     int ID;

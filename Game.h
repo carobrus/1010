@@ -12,11 +12,10 @@ public:
     Game(const Game& orig);
     void copyGame(Game copia);                  //copia el score y el tablero.
     Board getBoard() const;
-    int getHandSize() const;
+    int getHandSize() const;                    //devuelve el tamaño de la cantidad de fichas por ronda.
     bool checkPiece(Piece,int,int);             //chequea que la pieza pueda colocarse. True si esta ocupado, false si esta libre.
     bool addPieceToBoard(Piece, int, int);      //añade una pieza al tablero.
     void getPiecesToPlay(list<Piece>, Piece []);//devuelve tres piezas random para jugar.
-    void printBoard();                          //imprime el tablero. Utilizado para debbuging.
     bool movesLeft(list<Piece>);                //si ninguna pieza puede colocarse, no quedan movimientos y devuelve false.
     int getWidth();                             //devuelve ancho del tablero del juego.
     int getHeight();                            //devuelve altura del tablero del juego.

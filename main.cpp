@@ -2,12 +2,15 @@
 #include <iostream>
 #include "Game.h"
 #include "Backtracking.h"
+#include "PrintToConsole.h"
 #include <windows.h>
 
 using namespace std;
 
 
 int main(int argc, char** argv) {
+    
+    PrintToConsole print;
     
     ////////////////////////////////// PIEZAS //////////////////////////////////
     
@@ -187,7 +190,7 @@ int main(int argc, char** argv) {
     p21.addCoord(3,0);
     p21.addCoord(3,1);
     p21.addCoord(3,2);
-    p21.addCoord(3,3);*/
+    p21.addCoord(3,3);
 
     Piece p22 = Piece(22);     // ■ ■ ■ ■ ■ ■ ■
     p22.addCoord(0,0);         // ■
@@ -206,7 +209,7 @@ int main(int argc, char** argv) {
     p22.addCoord(0,6);
     p22.addCoord(0,7);
     
-    /*Piece p23 = Piece(23);   //cuadrado 3x3
+    Piece p23 = Piece(23);   //cuadrado 3x3
     p23.addCoord(0,0);
     p23.addCoord(0,1);
     p23.addCoord(0,2);
@@ -215,7 +218,7 @@ int main(int argc, char** argv) {
     p23.addCoord(1,2);
     p23.addCoord(2,0);
     p23.addCoord(2,1);
-    p23.addCoord(2,2);*/
+    p23.addCoord(2,2);
     
     Piece p24 = Piece(24);     // ■ ■ ■ ■ ■ ■ ■ //■
     p24.addCoord(0,0);
@@ -226,7 +229,6 @@ int main(int argc, char** argv) {
     p24.addCoord(5,0);
     p24.addCoord(6,0);
     //p24.addCoord(7,0);
-            
     
     Piece p25 = Piece(25);
     p25.addCoord(0,0);          // ■
@@ -236,10 +238,10 @@ int main(int argc, char** argv) {
     p25.addCoord(0,4);          // ■
     p25.addCoord(0,5);          // ■
     p25.addCoord(0,6);          // ■
-    //p25.addCoord(0,7);          // ■
+    //p25.addCoord(0,7);          // ■*/
 
-    ////////////////////////////////////////////////////////////////////////////
-
+    //////////////////////////////// END PIEZAS ////////////////////////////////
+    
     Game game = Game();
     list<Piece> pieces;
     pieces.push_back(p0);
@@ -262,7 +264,7 @@ int main(int argc, char** argv) {
     pieces.push_back(p17);
     pieces.push_back(p18);
 
-    ////////////////////////////// BUCLE DEL JUEGO /////////////////////////////
+    //////////////////////////////// UN JUGADOR ////////////////////////////////
     /*list<Piece> hand;
     while (hand.empty()){
         hand = game.getPiecesToPlay();
@@ -319,16 +321,17 @@ int main(int argc, char** argv) {
             }
         }
     }*/
+    ////////////////////////////// END UN JUGADOR //////////////////////////////
     
-    ///////////////////////////////Backtracking/////////////////////////////////
+    /////////////////////////////// BACKTRACKING ///////////////////////////////
     
     Game solucion = Game();
     Backtracking bt;
-    bool terminar = false;
+    bool end = false;
     bool visitados [game.getHandSize()]; 
     Piece hand [game.getHandSize()];
     
-    while (terminar!=true){
+    while (end!=true){
         
         game.getPiecesToPlay(pieces, hand);
         
@@ -336,57 +339,27 @@ int main(int argc, char** argv) {
             cout << "Pieza ID: "<< hand[i].getID() << endl;
 
         solucion.reset();
-        bt.vueltaAtras(game,solucion,hand,visitados, 0,game.getHandSize());
+        bt.vueltaAtras(game,solucion,hand,visitados,0,game.getHandSize());
         
         cout << "Solucion: " << endl;
-        solucion.printBoard();
+        print.printBoard(solucion.getBoard());
         cout << "Score de solucion: " << solucion.getScore() << endl;
+        
         if (solucion.getScore()==0)
-            terminar = true;
+            end = true;
+        
         cout << "Score: " << game.getScore() << endl;
         game=solucion;
         
         Sleep(100);
         //cout << "Insertar numero para seguir: "; int x; cin >> x;
-        
     }
     
-//arreglar puntaje
+    ///////////////////////////// END BACKTRACKING /////////////////////////////
     
-    //system("cls");
-    
-    cout << endl;
-    cout << "                                       ____             " << endl;
-    cout << "    ,----..      ,---,               ,'  , `.    ,---,. " << endl;
-    cout << "   /   /   \\    '  .' \\           ,-+-,.' _ |  ,'  .' | " << endl;
-    cout << "  |   :     :  /  ;    '.      ,-+-. ;   , ||,---.'   | " << endl;
-    cout << "  .   |  ;. / :  :       \\    ,--.'|'   |  ;||   |   .' " << endl;
-    cout << "  .   ; /--`  :  |   /\\   \\  |   |  ,', |  '::   :  |-, " << endl;
-    cout << "  ;   | ;  __ |  :  ' ;.   : |   | /  | |  ||:   |  ;/| " << endl;
-    cout << "  |   : |.' .'|  |  ;/  \\   \\'   | :  | :  |,|   :   .' " << endl;
-    cout << "  .   | '_.' :'  :  | \\  \\ ,';   . |  ; |--' |   |  |-, " << endl;
-    cout << "  '   ; : \\  ||  |  '  '--'  |   : |  | ,    '   :  ;/| " << endl;
-    cout << "  '   | '/  .'|  :  :        |   : '  |/     |   |    \\ " << endl;
-    cout << "  |   :    /  |  | ,'        ;   | |`-'      |   :   .' " << endl;
-    cout << "   \\   \\ .'   `--''          |   ;/          |   | ,'   " << endl;
-    cout << "    `---`                    '---'           `----'     " << endl;
-    cout << "      ,----..                                           " << endl;
-    cout << "     /   /   \\                  ,---,.,-.----.          " << endl;
-    cout << "    /   .     :        ,---.  ,'  .' |\\    /  \\         " << endl;
-    cout << "   .   /   ;.  \\      /__./|,---.'   |;   :    \\        " << endl;
-    cout << "  .   ;   /  ` ; ,---.;  ; ||   |   .'|   | .\\ :        " << endl;
-    cout << "  ;   |  ; \\ ; |/___/ \\  | |:   :  |-,.   : |: |        " << endl;
-    cout << "  |   :  | ; | '\\   ;  \\ ' |:   |  ;/||   |  \\ :        " << endl;
-    cout << "  .   |  ' ' ' : \\   \\  \\: ||   :   .'|   : .  /        " << endl;
-    cout << "  '   ;  \\; /  |  ;   \\  ' .|   |  |-,;   | |  \\        " << endl;
-    cout << "   \\   \\  ',  /    \\   \\   ''   :  ;/||   | ;\\  \\       " << endl;
-    cout << "    ;   :    /      \\   `  ;|   |    \\:   ' | \\.'       " << endl;
-    cout << "     \\   \\ .'        :   \\ ||   :   .':   : :-'         " << endl;
-    cout << "      `---`           '---' |   | ,'  |   |.'           " << endl;
-    cout << "                            `----'    `---'             " << endl;
-    
-    ////////////////////////////////////////////////////////////////////////////
-    
+    print.printGameOver();
     
     return 0;
 }
+
+//arreglar puntaje

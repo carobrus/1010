@@ -13,7 +13,6 @@ public:
     bool fullRow(int);                   //si la fila tiene valores distintos de cero, retorna true.
     void setSquare(int,int);             //marca un casillero como ocupado.
     bool checkSquare(int,int) const;     //devuelve true si no se puede poner nada en el casillero. True si esta ocupado.
-    void printBoard();                   //imprime el tablero. Usado para debbuging.
     int getHeight() const;               //devuelve la altura del trablero.
     int getWidth() const;                //devuelve el ancho del tablero.
     int cleanLines();                    //borra las filas y columnas ocupadas. Devuelve la cantidad que se han borrado.

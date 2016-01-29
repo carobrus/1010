@@ -33,14 +33,5 @@ int Piece::getSize(){
     return piece.size();
 }
 
-void Piece::mostrar(){
-    list<pair<int,int> > aux=piece;
-    cout << endl;
-    while (aux.size() != 0){
-        cout << "x: " << aux.front().first << " y: " << aux.front().second << endl;
-        aux.pop_front();
-    }
-}
-
 Piece::~Piece(){
 }

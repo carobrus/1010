@@ -64,10 +64,6 @@ void Game::getPiecesToPlay(list<Piece> pieces, Piece aux []){
     }
 }
 
-void Game::printBoard(){
-    board->printBoard();
-}
-
 bool Game::movesLeft(list<Piece> hand){
     list<Piece>:: iterator it = hand.begin();
     for (int i=0; i<hand.size(); i++){
