@@ -10,14 +10,14 @@ Backtracking::Backtracking() {
 /*Backtracking::Backtracking(const Backtracking& orig) {
 }*/
 
-void Backtracking::vueltaAtras(Game gameAct, Game &gameSol, Piece hand [], bool visitados [], int mejorPunt, int depth){  //depth comienza en 3 por la cant de piezas
+void Backtracking::vueltaAtras(Game gameAct, Game &gameSol, Piece hand [], bool visited [], int mejorPunt, int depth){  //depth comienza en 3 por la cant de piezas
     if ((depth == 0) && (gameAct.getScore() > mejorPunt)){
             mejorPunt=gameAct.getScore();
             gameSol=gameAct;
     }
     else if (depth>0)
         for (int pos =0; pos < gameAct.getHandSize(); pos++)
-            if (visitados[pos] == false)
+            if (visited[pos] == false)
                 for (int x=0; x< gameAct.getWidth(); x++)
                     for (int y=0; y< gameAct.getHeight(); y++)
                         if (!gameAct.checkPiece(hand[pos],x,y)){
@@ -26,9 +26,9 @@ void Backtracking::vueltaAtras(Game gameAct, Game &gameSol, Piece hand [], bool 
                             copia.refreshBoard(hand[pos]);
                             //Sleep(100);
                             //copia.printBoard();
-                            visitados[pos] = true;
-                            vueltaAtras(copia, gameSol, hand, visitados, gameSol.getScore(), depth-1);
-                            visitados[pos] = false;
+                            visited[pos] = true;
+                            vueltaAtras(copia, gameSol, hand, visited, gameSol.getScore(), depth-1);
+                            visited[pos] = false;
                         }
 }
 

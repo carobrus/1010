@@ -13,12 +13,14 @@ Game::Game()
     board = new Board();
     score = 0;
     handSize = 3;
+    linesDeleted = 0;
 }
 
 Game::Game(const Game& orig) {
     board = new Board(orig.getBoard());
     score = orig.getScore();
     handSize = orig.getHandSize();
+    linesDeleted = orig.getLinesDeleted();
 }
 
 Board Game::getBoard() const{
@@ -27,6 +29,10 @@ Board Game::getBoard() const{
 
 int Game::getHandSize() const{
     return handSize;
+}
+
+int Game::getLinesDeleted() const{
+    return linesDeleted;
 }
 
 bool Game::checkPiece(Piece p, int x, int y){ //chequea que la pieza pueda colocarse. true si esta ocupado, false si esta libre
@@ -105,19 +111,27 @@ int Game::getScore() const{
 
 void Game::refreshBoard(Piece P){
     increaseScore(P);
-    increaseScore(board->cleanLines());
+    int linesDeletedThisRound = board->cleanLines();
+    linesDeleted = linesDeleted + linesDeletedThisRound;
+    increaseScore(linesDeletedThisRound);
 }
 
 void Game::setSquare(int r, int c){
     board->setSquare(r,c);
 }
 
+bool Game::checkSquare(int r, int c){
+    board->checkSquare(r,c);
+}
+
 void Game::reset(){
+    this->linesDeleted = 0;
     this->score = 0;
     board->flushBoard();
 }
  
 Game& Game::operator =(const Game &orig){
+    this->linesDeleted = orig.getLinesDeleted();
     this->score = orig.getScore();
     //delete board;
     this->board = new Board(orig.getBoard());

@@ -18,59 +18,59 @@ int main(int argc, char** argv) {
     p0.addCoord(0,0);
     
     Piece p1 = Piece(1);     //Palito de 2 vertical
-    p1.addCoord(0,0);
-    p1.addCoord(0,1);
+    p1.addCoord(0,0);        // ■
+    p1.addCoord(0,1);        // ■
     
     Piece p2 = Piece(2);     //Palito de 2 horizontal
-    p2.addCoord(0,0);
+    p2.addCoord(0,0);        // ■ ■
     p2.addCoord(1,0);
      
     Piece p3 = Piece(3);     //Palito de 3 vertical
-    p3.addCoord(0,0);
-    p3.addCoord(0,1);
-    p3.addCoord(0,2);
+    p3.addCoord(0,0);        // ■
+    p3.addCoord(0,1);        // ■
+    p3.addCoord(0,2);        // ■
     
     Piece p4 = Piece(4);     //Palito de 3 horizontal
-    p4.addCoord(0,0);
+    p4.addCoord(0,0);        // ■ ■ ■
     p4.addCoord(1,0);
     p4.addCoord(2,0);
     
     Piece p5 = Piece(5);     //Palito de 4 vertical
-    p5.addCoord(0,0);
-    p5.addCoord(0,1);
-    p5.addCoord(0,2);
-    p5.addCoord(0,3);
+    p5.addCoord(0,0);        // ■
+    p5.addCoord(0,1);        // ■
+    p5.addCoord(0,2);        // ■
+    p5.addCoord(0,3);        // ■
     
     Piece p6 = Piece(6);     //Palito de 4 horizontal
-    p6.addCoord(0,0);
+    p6.addCoord(0,0);        // ■ ■ ■ ■
     p6.addCoord(1,0);
     p6.addCoord(2,0);
     p6.addCoord(3,0);
     
     Piece p7 = Piece(7);     //Palito de 5 vertical
-    p7.addCoord(0,0);
-    p7.addCoord(0,1);
-    p7.addCoord(0,2);
-    p7.addCoord(0,3);
-    p7.addCoord(0,4);
+    p7.addCoord(0,0);        // ■
+    p7.addCoord(0,1);        // ■
+    p7.addCoord(0,2);        // ■
+    p7.addCoord(0,3);        // ■
+    p7.addCoord(0,4);        // ■
     
     Piece p8 = Piece(8);     //Palito de 5 horizontal
-    p8.addCoord(0,0);
+    p8.addCoord(0,0);        // ■ ■ ■ ■ ■
     p8.addCoord(1,0);
     p8.addCoord(2,0);
     p8.addCoord(3,0);
     p8.addCoord(4,0);
     
     Piece p9 = Piece(9);     //cuadrado 2x2
-    p9.addCoord(0,0);
-    p9.addCoord(0,1);
+    p9.addCoord(0,0);        // ■ ■
+    p9.addCoord(0,1);        // ■ ■
     p9.addCoord(1,0);
     p9.addCoord(1,1);
 
     Piece p10 = Piece(10);   //cuadrado 3x3
-    p10.addCoord(0,0);
-    p10.addCoord(0,1);
-    p10.addCoord(0,2);
+    p10.addCoord(0,0);        // ■ ■ ■
+    p10.addCoord(0,1);        // ■ ■ ■
+    p10.addCoord(0,2);        // ■ ■ ■
     p10.addCoord(1,0);
     p10.addCoord(1,1);
     p10.addCoord(1,2);
@@ -265,18 +265,49 @@ int main(int argc, char** argv) {
     pieces.push_back(p18);
 
     //////////////////////////////// UN JUGADOR ////////////////////////////////
+    
+    /*Piece hand [game.getHandSize()];
+    game.getPiecesToPlay(pieces, hand);
+    
+    for (int i=0; i<game.getHandSize(); i++){
+        if (game.movesLeft(hand)){
+            print.printBoard(game.getBoard());
+            
+            //ingreso de datos
+            int pieza=0;
+            int x=0;
+            int y=0;
+            
+            cout << endl << "elegi la pieza: ";
+            cin >> pieza;
+            cout << pieza << endl << "elegi la x: ";
+            cin >> x;
+            cout << x << endl << "elegi la y: ";
+            cin >> y;
+            cout << y << endl;
+            
+            if (game.addPieceToBoard(hand[pieza],x,y)){ //si se inserto
+                game.refreshBoard(hand[pieza]);
+            }
+            
+        }
+        else i = game.getHandSize();
+    }*/
+    
+    
     /*list<Piece> hand;
     while (hand.empty()){
         hand = game.getPiecesToPlay();
         while ((!hand.empty()) && (game.movesLeft(hand))){
             //system("cls");
-            game.printBoard();
+            print.printBoard(game.getBoard());
+            //game.printBoard();
             cout << endl;
             
             list<Piece>:: iterator it_show = hand.begin();
             for (int i=0; i<hand.size(); i++){
-            cout << "Pieza ID: "<< (*it_show).getID() << endl;
-            it_show++;
+                cout << "Pieza ID: "<< (*it_show).getID() << endl;
+                it_show++;
             }
             
             cout << endl << endl << "Score:  " << game.getScore() << endl;
@@ -344,15 +375,16 @@ int main(int argc, char** argv) {
         cout << "Solucion: " << endl;
         print.printBoard(solucion.getBoard());
         cout << "Score de solucion: " << solucion.getScore() << endl;
+        cout << "Lineas borradas so far: " << solucion.getLinesDeleted() << endl;
+        cout << endl;
         
         if (solucion.getScore()==0)
             end = true;
         
-        cout << "Score: " << game.getScore() << endl;
         game=solucion;
         
-        Sleep(100);
-        //cout << "Insertar numero para seguir: "; int x; cin >> x;
+        //Sleep(100);
+
     }
     
     ///////////////////////////// END BACKTRACKING /////////////////////////////

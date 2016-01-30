@@ -27,7 +27,7 @@ void PrintToConsole::printBoard(Board matriz){
             else
                 {char a=219;
                 cout << a << "|" ;}
-        cout << endl << "  - - - - - - - - - - " << endl;
+        cout << r << endl << "  - - - - - - - - - - " << endl;
     }
     cout << "  0 1 2 3 4 5 6 7 8 9" << endl;
     cout << endl;
