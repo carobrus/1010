@@ -4,8 +4,8 @@
 PrintToConsole::PrintToConsole() {
 }
 
-PrintToConsole::PrintToConsole(const PrintToConsole& orig) {
-}
+/*PrintToConsole::PrintToConsole(const PrintToConsole& orig) {
+}*/
 
 void PrintToConsole::printPiece(Piece piece){
     list<pair<int,int> > aux=piece.getCoords();

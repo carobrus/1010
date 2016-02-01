@@ -1,7 +1,7 @@
 #include "HeuristicRow.h"
 
-HeuristicRow::HeuristicRow(Game game) {
-    for (int i=0; i<game.getHeight(); i++)
+HeuristicRow::HeuristicRow(Game * game) {
+    for (int i=0; i<game->getWidth(); i++)
         arr[i]=(i+1)*10;
 }
 
@@ -11,10 +11,9 @@ HeuristicRow::HeuristicRow(Game game) {
 int HeuristicRow::getValue(Game g){
     int accumulator = 0;
     for (int r=0; r<g.getWidth(); r++)
-        for (int c=0; c<g.getHeight(); c++){
-            if (g.checkSquare(r,c))
+        for (int c=0; c<g.getHeight(); c++)
+            if (g.checkSquare(c,r))
                 accumulator = accumulator + arr[r];
-        }
     return accumulator;
 }
 

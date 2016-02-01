@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Backtracking.h"
 #include "PrintToConsole.h"
+#include "HeuristicRow.h"
 #include <windows.h>
 
 using namespace std;
@@ -357,11 +358,14 @@ int main(int argc, char** argv) {
     /////////////////////////////// BACKTRACKING ///////////////////////////////
     
     Game solucion = Game();
-    Backtracking bt;
+    //Backtracking bt;
     bool end = false;
     bool visitados [game.getHandSize()]; 
     Piece hand [game.getHandSize()];
     
+    Heuristic *heuristic = new HeuristicRow(&game);
+    Backtracking bt = Backtracking(heuristic);
+
     while (end!=true){
         
         game.getPiecesToPlay(pieces, hand);
@@ -393,5 +397,3 @@ int main(int argc, char** argv) {
     
     return 0;
 }
-
-//arreglar puntaje

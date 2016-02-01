@@ -3,10 +3,11 @@
 
 #include "Game.h"
 #include "Heuristic.h"
+#include <iostream>
 
 class HeuristicRow : public Heuristic{
 public:
-    HeuristicRow(Game);
+    HeuristicRow(Game*);
     //HeuristicRow(const HeuristicRow& orig);
     int getValue(Game);
     virtual ~HeuristicRow();

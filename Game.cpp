@@ -139,5 +139,6 @@ Game& Game::operator =(const Game &orig){
 }
 
 Game::~Game() {
+    //cout << "Destructor Game" << endl;
     delete board;
 }

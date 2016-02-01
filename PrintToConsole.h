@@ -6,7 +6,7 @@
 class PrintToConsole {
 public:
     PrintToConsole();
-    PrintToConsole(const PrintToConsole& orig);
+    //PrintToConsole(const PrintToConsole& orig);
     void printPiece(Piece);
     void printBoard(Board);
     void printGameOver();
