@@ -4,6 +4,7 @@
 #include "Backtracking.h"
 #include "PrintToConsole.h"
 #include "HeuristicLine.h"
+#include "HeuristicHighestScore.h"
 #include <windows.h>
 
 using namespace std;
@@ -296,7 +297,7 @@ int main(int argc, char** argv) {
     }*/
     
     
-    /*list<Piece> hand;
+    list<Piece> hand;
     while (hand.empty()){
         hand = game.getPiecesToPlay();
         while ((!hand.empty()) && (game.movesLeft(hand))){
@@ -352,12 +353,12 @@ int main(int argc, char** argv) {
                     break;
             }
         }
-    }*/
+    }
     ////////////////////////////// END UN JUGADOR //////////////////////////////
     
     /////////////////////////////// BACKTRACKING ///////////////////////////////
     
-    Game solucion = Game();
+    /*Game solucion = Game();
     //Backtracking bt;
     bool end = false;
     bool visitados [game.getHandSize()]; 
@@ -367,11 +368,13 @@ int main(int argc, char** argv) {
         visitados[i] = false;
     }
     
-    Heuristic *heuristicC = new HeuristicLine(&game, false);
-    Heuristic *heuristicR = new HeuristicLine(&game, true);
     Backtracking bt = Backtracking();
-    bt.addToList(heuristicC, 0.5);
-    bt.addToList(heuristicR, 0.5);
+    //Heuristic *heuristicC = new HeuristicLine(&game, false);
+    //Heuristic *heuristicR = new HeuristicLine(&game, true);
+    Heuristic *heuristicHS = new HeuristicHighestScore();
+    //bt.addToList(heuristicC, 0.5);
+    //bt.addToList(heuristicR, 0.5);
+    bt.addToList(heuristicHS, 1);
     
     while (end!=true){
         
@@ -396,7 +399,7 @@ int main(int argc, char** argv) {
         
         //Sleep(100);
 
-    }
+    }*/
     
     ///////////////////////////// END BACKTRACKING /////////////////////////////
     
@@ -404,3 +407,10 @@ int main(int argc, char** argv) {
     
     return 0;
 }
+
+/** Lista de cosas para hacer:
+ * Dejar arreglado el un jugador
+ * Emprolijar un poco el main (capaz hacer procedimientos apartes para el bt y el 1 jugador)
+ * Un menu piola
+ * La heuristica
+**/

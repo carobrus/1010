@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Board.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/Heuristic.o \
+	${OBJECTDIR}/HeuristicHighestScore.o \
 	${OBJECTDIR}/HeuristicLine.o \
 	${OBJECTDIR}/Piece.o \
 	${OBJECTDIR}/PrintToConsole.o \
@@ -88,6 +89,11 @@ ${OBJECTDIR}/Heuristic.o: Heuristic.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Heuristic.o Heuristic.cpp
+
+${OBJECTDIR}/HeuristicHighestScore.o: HeuristicHighestScore.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HeuristicHighestScore.o HeuristicHighestScore.cpp
 
 ${OBJECTDIR}/HeuristicLine.o: HeuristicLine.cpp 
 	${MKDIR} -p ${OBJECTDIR}
