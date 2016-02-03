@@ -367,10 +367,12 @@ int main(int argc, char** argv) {
         visitados[i] = false;
     }
     
-    Heuristic *heuristic = new HeuristicLine(&game);
+    Heuristic *heuristicC = new HeuristicLine(&game, false);
+    Heuristic *heuristicR = new HeuristicLine(&game, true);
     Backtracking bt = Backtracking();
-    bt.addToList(heuristic, 0.5);
-
+    bt.addToList(heuristicC, 0.5);
+    bt.addToList(heuristicR, 0.5);
+    
     while (end!=true){
         
         game.getPiecesToPlay(pieces, hand);

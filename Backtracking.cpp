@@ -1,5 +1,6 @@
 #include "Backtracking.h"
 #include "Heuristic.h"
+#include "HeuristicLine.h"
 #include <iostream>
 #include <windows.h>
 
@@ -15,7 +16,7 @@ Backtracking::Backtracking() {
 /*Backtracking::Backtracking(const Backtracking& orig) {
 }*/
 
-void Backtracking::vueltaAtras(Game gameAct, Game &gameSol, Piece hand [], bool visited [], int& mejorPunt, int depth){  //depth comienza en 3 por la cant de piezas
+void Backtracking::vueltaAtras(Game gameAct, Game &gameSol, Piece hand [], bool visited [], int& mejorPunt, int depth){
     if (depth == 0){ 
         int resolveAux = floor(resolve(gameAct));
         if (resolveAux > mejorPunt){
@@ -56,7 +57,7 @@ int Backtracking::resolve(Game g){
     list<pair<Heuristic*, float> >:: iterator it = heuristics.begin();
     float aux =0;
     for (int i=0; i<heuristics.size(); i++){
-        aux = aux + ((*it).first->getValue(g)*((*it).second));
+        aux = aux + (((*it).first->getValue(g)) * ((*it).second));
         it++;
     }
     return aux;

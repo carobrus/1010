@@ -15,7 +15,7 @@ public:
     //Backtracking(const Backtracking& orig);
     void vueltaAtras(Game, Game&, Piece [], bool [], int&, int);
     void addToList (Heuristic*, float);
-    int resolve (Game g);
+    int resolve (Game);
     virtual ~Backtracking();
 private:
     list<pair<Heuristic*, float> > heuristics;
