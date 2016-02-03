@@ -1,7 +1,7 @@
 #include "Heuristic.h"
 
 Heuristic::Heuristic() {
-    cout << "Heuristic" << endl;
+    cout << "Heuristic constructor" << endl;
 }
 
 /*Heuristic::Heuristic(const Heuristic& orig) {
@@ -12,5 +12,6 @@ int Heuristic::getValue(Game g){
 }
 
 Heuristic::~Heuristic() {
+    cout << "Heuristic destructor" << endl;
 }
 

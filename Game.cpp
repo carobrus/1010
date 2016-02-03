@@ -130,7 +130,8 @@ void Game::reset(){
     board->flushBoard();
 }
  
-Game& Game::operator =(const Game &orig){
+Game& Game::operator =(const Game &orig){\
+    this->handSize = orig.getHandSize();
     this->linesDeleted = orig.getLinesDeleted();
     this->score = orig.getScore();
     //delete board;
@@ -141,4 +142,21 @@ Game& Game::operator =(const Game &orig){
 Game::~Game() {
     //cout << "Destructor Game" << endl;
     delete board;
+}
+
+void Game::printBoard(){
+    cout << endl << "  0 1 2 3 4 5 6 7 8 9 ";
+    cout << endl << "  - - - - - - - - - - " << endl;
+    for (int r=0; r<board->getHeight(); r++){
+        cout << r << "|";
+        for (int c=0; c<board->getWidth(); c++)
+            if (board->checkSquare(c,r) == 0)
+                cout << " |";
+            else
+                {char a=219;
+                cout << a << "|" ;}
+        cout << r << endl << "  - - - - - - - - - - " << endl;
+    }
+    cout << "  0 1 2 3 4 5 6 7 8 9" << endl;
+    cout << endl;
 }

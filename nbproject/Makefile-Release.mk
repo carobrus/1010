@@ -39,7 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Board.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/Heuristic.o \
-	${OBJECTDIR}/HeuristicRow.o \
+	${OBJECTDIR}/HeuristicLine.o \
 	${OBJECTDIR}/Piece.o \
 	${OBJECTDIR}/PrintToConsole.o \
 	${OBJECTDIR}/main.o
@@ -89,10 +89,10 @@ ${OBJECTDIR}/Heuristic.o: Heuristic.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Heuristic.o Heuristic.cpp
 
-${OBJECTDIR}/HeuristicRow.o: HeuristicRow.cpp 
+${OBJECTDIR}/HeuristicLine.o: HeuristicLine.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HeuristicRow.o HeuristicRow.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HeuristicLine.o HeuristicLine.cpp
 
 ${OBJECTDIR}/Piece.o: Piece.cpp 
 	${MKDIR} -p ${OBJECTDIR}

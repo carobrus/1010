@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Backtracking.h"
 #include "PrintToConsole.h"
-#include "HeuristicRow.h"
+#include "HeuristicLine.h"
 #include <windows.h>
 
 using namespace std;
@@ -363,8 +363,13 @@ int main(int argc, char** argv) {
     bool visitados [game.getHandSize()]; 
     Piece hand [game.getHandSize()];
     
-    Heuristic *heuristic = new HeuristicRow(&game);
-    Backtracking bt = Backtracking(heuristic);
+    for (int i=0; i<game.getHandSize(); i++){
+        visitados[i] = false;
+    }
+    
+    Heuristic *heuristic = new HeuristicLine(&game);
+    Backtracking bt = Backtracking();
+    bt.addToList(heuristic, 0.5);
 
     while (end!=true){
         
@@ -372,9 +377,9 @@ int main(int argc, char** argv) {
         
         for (int i=0; i<game.getHandSize(); i++)
             cout << "Pieza ID: "<< hand[i].getID() << endl;
-
+        int m=0;
         solucion.reset();
-        bt.vueltaAtras(game,solucion,hand,visitados,0,game.getHandSize());
+        bt.vueltaAtras(game,solucion,hand,visitados,m,game.getHandSize());
         
         cout << "Solucion: " << endl;
         print.printBoard(solucion.getBoard());

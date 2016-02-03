@@ -30,6 +30,7 @@ public:
     void reset();                               //borra el tablero y el score.
     Game& operator =(const Game &orig);         //sobrecarga de operador de asignacion.
     virtual ~Game();                            //destructor.
+    void printBoard();
 private:
     Board * board;
     int score;
