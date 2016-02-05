@@ -7,6 +7,36 @@ PrintToConsole::PrintToConsole() {
 /*PrintToConsole::PrintToConsole(const PrintToConsole& orig) {
 }*/
 
+void PrintToConsole::printStartScreen(){
+    cout << endl;
+    cout << " --------------------------------------------------------------" << endl;
+    cout << "                                                      ,----,  " << endl;
+    cout << "                                                    ,`--.' |   " << endl;
+    cout << "         ,---,    ,----..        ,---,    ,----..   |   :  :   " << endl;
+    cout << "      ,`--.' |   /   /   \\    ,`--.' |   /   /   \\  '   '  ;   " << endl;
+    cout << "     /    /  :  /   .     :  /    /  :  /   .     : |   |  |   " << endl;
+    cout << "    :    |.' ' .   /   ;.  \\:    |.' ' .   /   ;.  \\'   :  ;   " << endl;
+    cout << "    `----':  |.   ;   /  ` ;`----':  |.   ;   /  ` ;|   |  '   " << endl;
+    cout << "       '   ' ;;   |  ; \\ ; |   '   ' ;;   |  ; \\ ; |'   :  |   " << endl;
+    cout << "       |   | ||   :  | ; | '   |   | ||   :  | ; | ';   |  ;   " << endl;
+    cout << "       '   : ;.   |  ' ' ' :   '   : ;.   |  ' ' ' :`---'. |   " << endl;
+    cout << "       |   | ''   ;  \\; /  |   |   | ''   ;  \\; /  | `--..`;   " << endl;
+    cout << "       '   : | \\   \\  ',  /    '   : | \\   \\  ',  / .--,_      " << endl;
+    cout << "       ;   |.'  ;   :    /     ;   |.'  ;   :    /  |    |`.   " << endl;
+    cout << "       '---'     \\   \\ .'      '---'     \\   \\ .'   `-- -`, ;  " << endl;
+    cout << "                  `---`                   `---`       '---`\"   " << endl;
+    cout << endl << endl;
+    cout << " --------------------------------------------------------------" << endl;
+    cout << "                By Bergottini L. & Bruscantini C." << endl;
+    cout << "                          Algoritmos II "<< endl;
+    cout << "                             UNICEN "<< endl;
+    cout << " -----------------------------2016-----------------------------" << endl;
+    cout << endl << endl;
+    cout << " Press 'P' to play" << endl;
+    char x;
+    cin >> x;
+}
+
 void PrintToConsole::printPiece(Piece piece){
     list<pair<int,int> > aux=piece.getCoords();
     cout << endl;

@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Heuristic.o \
 	${OBJECTDIR}/HeuristicHighestScore.o \
 	${OBJECTDIR}/HeuristicLine.o \
+	${OBJECTDIR}/HeuristicSurroundingArea.o \
 	${OBJECTDIR}/Piece.o \
 	${OBJECTDIR}/PrintToConsole.o \
 	${OBJECTDIR}/main.o
@@ -99,6 +100,11 @@ ${OBJECTDIR}/HeuristicLine.o: HeuristicLine.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HeuristicLine.o HeuristicLine.cpp
+
+${OBJECTDIR}/HeuristicSurroundingArea.o: HeuristicSurroundingArea.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HeuristicSurroundingArea.o HeuristicSurroundingArea.cpp
 
 ${OBJECTDIR}/Piece.o: Piece.cpp 
 	${MKDIR} -p ${OBJECTDIR}

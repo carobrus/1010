@@ -11,7 +11,6 @@
 class Backtracking {
 public:
     Backtracking();
-    //Backtracking(Heuristic*);
     //Backtracking(const Backtracking& orig);
     void vueltaAtras(Game, Game&, Piece [], bool [], int&, int);
     void addToList (Heuristic*, float);

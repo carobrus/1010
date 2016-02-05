@@ -10,6 +10,7 @@
       <itemPath>Heuristic.h</itemPath>
       <itemPath>HeuristicHighestScore.h</itemPath>
       <itemPath>HeuristicLine.h</itemPath>
+      <itemPath>HeuristicSurroundingArea.h</itemPath>
       <itemPath>Piece.h</itemPath>
       <itemPath>PrintToConsole.h</itemPath>
     </logicalFolder>
@@ -26,6 +27,7 @@
       <itemPath>Heuristic.cpp</itemPath>
       <itemPath>HeuristicHighestScore.cpp</itemPath>
       <itemPath>HeuristicLine.cpp</itemPath>
+      <itemPath>HeuristicSurroundingArea.cpp</itemPath>
       <itemPath>Piece.cpp</itemPath>
       <itemPath>PrintToConsole.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -75,6 +77,10 @@
       <item path="HeuristicLine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HeuristicLine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HeuristicSurroundingArea.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HeuristicSurroundingArea.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Piece.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -130,6 +136,10 @@
       <item path="HeuristicLine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HeuristicLine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HeuristicSurroundingArea.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HeuristicSurroundingArea.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Piece.cpp" ex="false" tool="1" flavor2="0">
       </item>

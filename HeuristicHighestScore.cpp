@@ -2,6 +2,7 @@
 #include "Game.h"
 
 HeuristicHighestScore::HeuristicHighestScore() {
+    cout << "HeuristicHighestScore constructor" << endl;
 }
 
 HeuristicHighestScore::HeuristicHighestScore(const HeuristicHighestScore& orig) {

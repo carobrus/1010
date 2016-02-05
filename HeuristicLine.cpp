@@ -25,7 +25,7 @@ int HeuristicLine::getValue(Game g){
         }
     }
     //cout << endl << "Val Heur: " << accumulator << endl << endl;
-    return accumulator;
+    return accumulator + g.getLinesDeleted()*2000;
 }
 
 HeuristicLine::~HeuristicLine() {

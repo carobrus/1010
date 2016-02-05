@@ -9,21 +9,18 @@ using namespace std;
 Backtracking::Backtracking() {
 }
 
-/*Backtracking::Backtracking(Heuristic* h) {
-    heuristic = h;
-}/*
-
 /*Backtracking::Backtracking(const Backtracking& orig) {
 }*/
 
 void Backtracking::vueltaAtras(Game gameAct, Game &gameSol, Piece hand [], bool visited [], int& mejorPunt, int depth){
+    //gameAct.printBoard(); int z; cin >> z;
     if (depth == 0){ 
         int resolveAux = floor(resolve(gameAct));
         if (resolveAux > mejorPunt){
             mejorPunt=resolveAux;
             gameSol=gameAct;
-            cout << "Valor de resolveAux: " << resolveAux << endl;
-            cout << "Score del juego: " << gameAct.getScore() << endl;
+            //cout << "Valor de resolveAux: " << resolveAux << endl;
+            //cout << "Score del juego: " << gameAct.getScore() << endl;
         }
     }    
     else if (depth>0){

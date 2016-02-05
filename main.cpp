@@ -5,7 +5,9 @@
 #include "PrintToConsole.h"
 #include "HeuristicLine.h"
 #include "HeuristicHighestScore.h"
+#include "HeuristicSurroundingArea.h"
 #include <windows.h>
+#include <limits>
 
 using namespace std;
 
@@ -267,39 +269,17 @@ int main(int argc, char** argv) {
     pieces.push_back(p18);
 
     //////////////////////////////// UN JUGADOR ////////////////////////////////
-    
-    /*Piece hand [game.getHandSize()];
-    game.getPiecesToPlay(pieces, hand);
-    
-    for (int i=0; i<game.getHandSize(); i++){
-        if (game.movesLeft(hand)){
-            print.printBoard(game.getBoard());
-            
-            //ingreso de datos
-            int pieza=0;
-            int x=0;
-            int y=0;
-            
-            cout << endl << "elegi la pieza: ";
-            cin >> pieza;
-            cout << pieza << endl << "elegi la x: ";
-            cin >> x;
-            cout << x << endl << "elegi la y: ";
-            cin >> y;
-            cout << y << endl;
-            
-            if (game.addPieceToBoard(hand[pieza],x,y)){ //si se inserto
-                game.refreshBoard(hand[pieza]);
-            }
-            
-        }
-        else i = game.getHandSize();
-    }*/
+    //print.printStartScreen();
+    //Sleep(1000);
     
     
-    list<Piece> hand;
+    /*list<Piece> hand;
     while (hand.empty()){
-        hand = game.getPiecesToPlay();
+        Piece arrPieces[game.getHandSize()];
+        game.getPiecesToPlay(pieces, arrPieces);
+        for (int i=0; i<game.getHandSize(); i++)
+            hand.push_back(arrPieces[i]);
+        
         while ((!hand.empty()) && (game.movesLeft(hand))){
             //system("cls");
             print.printBoard(game.getBoard());
@@ -353,12 +333,12 @@ int main(int argc, char** argv) {
                     break;
             }
         }
-    }
+    }*/
     ////////////////////////////// END UN JUGADOR //////////////////////////////
     
     /////////////////////////////// BACKTRACKING ///////////////////////////////
     
-    /*Game solucion = Game();
+    Game solucion = Game();
     //Backtracking bt;
     bool end = false;
     bool visitados [game.getHandSize()]; 
@@ -371,10 +351,12 @@ int main(int argc, char** argv) {
     Backtracking bt = Backtracking();
     //Heuristic *heuristicC = new HeuristicLine(&game, false);
     //Heuristic *heuristicR = new HeuristicLine(&game, true);
-    Heuristic *heuristicHS = new HeuristicHighestScore();
+    //Heuristic *heuristicHS = new HeuristicHighestScore();
+    Heuristic *heuristicSA = new HeuristicSurroundingArea(&game);
     //bt.addToList(heuristicC, 0.5);
     //bt.addToList(heuristicR, 0.5);
-    bt.addToList(heuristicHS, 1);
+    //bt.addToList(heuristicHS, 1);
+    bt.addToList(heuristicSA, 1);
     
     while (end!=true){
         
@@ -382,7 +364,7 @@ int main(int argc, char** argv) {
         
         for (int i=0; i<game.getHandSize(); i++)
             cout << "Pieza ID: "<< hand[i].getID() << endl;
-        int m=0;
+        int m = numeric_limits<int>::min();                     //se inicializa con el menor de los enteros.
         solucion.reset();
         bt.vueltaAtras(game,solucion,hand,visitados,m,game.getHandSize());
         
@@ -399,7 +381,7 @@ int main(int argc, char** argv) {
         
         //Sleep(100);
 
-    }*/
+    }
     
     ///////////////////////////// END BACKTRACKING /////////////////////////////
     
@@ -409,8 +391,7 @@ int main(int argc, char** argv) {
 }
 
 /** Lista de cosas para hacer:
- * Dejar arreglado el un jugador
- * Emprolijar un poco el main (capaz hacer procedimientos apartes para el bt y el 1 jugador)
- * Un menu piola
- * La heuristica
+    * Emprolijar un poco el main (capaz hacer procedimientos apartes para el bt y el 1 jugador)
+    * Un menu piola
+    * La heuristica (x pieza)
 **/
