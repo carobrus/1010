@@ -35,6 +35,7 @@ void PrintToConsole::printStartScreen(){
     cout << " Press 'P' to play" << endl;
     char x;
     cin >> x;
+    cout << endl;
 }
 
 void PrintToConsole::printPiece(Piece piece){
@@ -94,6 +95,28 @@ void PrintToConsole::printGameOver() {
     cout << "      `---`           '---' |   | ,'  |   |.'           " << endl;
     cout << "                            `----'    `---'             " << endl;
     cout << endl;
+}
+
+void PrintToConsole::printStartMenu() {
+    cout << " 1. Single mode." << endl;
+    cout << " 2. Backtracking." << endl;
+    cout << " 3. Exit game." << endl;
+}
+
+void PrintToConsole::printBacktrackingMenu() {
+    cout << " 1. Por mayor lineas." << endl;
+    cout << " 2. Filas." << endl;
+    cout << " 3. Columnas." << endl;
+    cout << " 4. Filas y columnas en igual proporción." << endl;
+    cout << " 5. Evitando agujeros." << endl;
+    cout << " 6. Filas, columnas y evitando agujeros." << endl;
+    cout << " 7. Exit." << endl;
+}
+
+void PrintToConsole::printKeepMenu() {
+    cout << " Keep playing?" << endl;
+    cout << " 1. Yes." << endl;
+    cout << " 2. No." << endl;
 }
 
 PrintToConsole::~PrintToConsole() {

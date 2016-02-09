@@ -13,5 +13,6 @@ int HeuristicHighestScore::getValue(Game g){
 }
 
 HeuristicHighestScore::~HeuristicHighestScore() {
+    cout << "HeuristicHighestScore destructor" << endl;
 }
 

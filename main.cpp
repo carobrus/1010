@@ -11,10 +11,112 @@
 
 using namespace std;
 
+PrintToConsole print;
+
+////////////////////////////////////////////////////////////////////////////////
+
+void singlePlayer(list<Piece> pieces, Game game) {
+    
+    list<Piece> hand;
+    while (hand.empty()){
+        Piece arrPieces[game.getHandSize()];
+        game.getPiecesToPlay(pieces, arrPieces);
+        for (int i=0; i<game.getHandSize(); i++)
+            hand.push_back(arrPieces[i]);
+        
+        while ((!hand.empty()) && (game.movesLeft(hand))){
+            //system("cls");
+            print.printBoard(game.getBoard());
+            cout << endl;
+            
+            list<Piece>:: iterator it_show = hand.begin();
+            for (int i=0; i<hand.size(); i++){
+                cout << "Pieza ID: "<< (*it_show).getID() << endl;
+                it_show++;
+            }
+            
+            cout << endl << endl << "Score:  " << game.getScore() << endl;
+            
+            int x=0;
+            int y=0;
+            int pieza=0;
+            
+            cout << endl << "elegi la pieza: ";
+            cin >> pieza;
+            cout << pieza << endl << "elegi la x: ";
+            cin >> x;
+            cout << x << endl << "elegi la y: ";
+            cin >> y;
+            cout << y << endl;
+            
+            list<Piece>:: iterator it = hand.begin();
+            switch (pieza)
+            {
+                case 0:
+                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
+                        game.refreshBoard(*it);
+                        hand.erase(it);
+                    }
+                    break;
+                case 1:
+                    for (int i=0; i<1; i++){
+                    it++;}
+                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
+                        game.refreshBoard(*it);
+                        hand.erase(it);
+                    }
+                    break;
+                case 2:
+                    for (int i=0; i<2; i++){
+                    it++;}
+                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
+                        game.refreshBoard(*it);
+                        hand.erase(it);
+                    }
+                    break;
+            }
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void autoPlay(list<Piece> pieces, Game game, Backtracking bt) {
+    Game solucion = Game();
+    bool end = false;
+    bool visitados [game.getHandSize()]; 
+    Piece hand [game.getHandSize()];
+    
+    for (int i=0; i<game.getHandSize(); i++){
+        visitados[i] = false;
+    }
+    
+    while (end!=true){
+        game.getPiecesToPlay(pieces, hand);
+        
+        for (int i=0; i<game.getHandSize(); i++)
+            cout << "Pieza ID: "<< hand[i].getID() << endl;
+        int m = numeric_limits<int>::min();                     //se inicializa con el menor de los enteros.
+        solucion.reset();
+        bt.vueltaAtras(game,solucion,hand,visitados,m,game.getHandSize());
+
+        cout << endl;
+        if (solucion.getScore()==0)
+            end = true;
+        else{
+            print.printBoard(solucion.getBoard());
+            cout << "Score de solucion: " << solucion.getScore() << endl;
+            cout << "Lineas borradas so far: " << solucion.getLinesDeleted() << endl;
+            cout << endl;
+        }
+        
+        game=solucion;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char** argv) {
-    
-    PrintToConsole print;
     
     ////////////////////////////////// PIEZAS //////////////////////////////////
     
@@ -268,130 +370,80 @@ int main(int argc, char** argv) {
     pieces.push_back(p17);
     pieces.push_back(p18);
 
-    //////////////////////////////// UN JUGADOR ////////////////////////////////
-    //print.printStartScreen();
-    //Sleep(1000);
-    
-    
-    /*list<Piece> hand;
-    while (hand.empty()){
-        Piece arrPieces[game.getHandSize()];
-        game.getPiecesToPlay(pieces, arrPieces);
-        for (int i=0; i<game.getHandSize(); i++)
-            hand.push_back(arrPieces[i]);
-        
-        while ((!hand.empty()) && (game.movesLeft(hand))){
-            //system("cls");
-            print.printBoard(game.getBoard());
-            //game.printBoard();
-            cout << endl;
-            
-            list<Piece>:: iterator it_show = hand.begin();
-            for (int i=0; i<hand.size(); i++){
-                cout << "Pieza ID: "<< (*it_show).getID() << endl;
-                it_show++;
-            }
-            
-            cout << endl << endl << "Score:  " << game.getScore() << endl;
-            
-            int x=0;
-            int y=0;
-            int pieza=0;
-            
-            cout << endl << "elegi la pieza: ";
-            cin >> pieza;
-            cout << pieza << endl << "elegi la x: ";
-            cin >> x;
-            cout << x << endl << "elegi la y: ";
-            cin >> y;
-            cout << y << endl;
-            
-            list<Piece>:: iterator it = hand.begin();
-            switch (pieza)
-            {
-                case 0:
-                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
-                        game.refreshBoard(*it);
-                        hand.erase(it);
-                    }
-                    break;
-                case 1:
-                    for (int i=0; i<1; i++){
-                    it++;}
-                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
-                        game.refreshBoard(*it);
-                        hand.erase(it);
-                    }
-                    break;
-                case 2:
-                    for (int i=0; i<2; i++){
-                    it++;}
-                    if (game.addPieceToBoard(*it,x,y)){ //si se inserto
-                        game.refreshBoard(*it);
-                        hand.erase(it);
-                    }
-                    break;
+    /////////////////////////////////// MENU ///////////////////////////////////
+    print.printStartScreen();
+    print.printStartMenu();
+    int keepPlaying = 1;
+    int gameOption = 0;
+    while ((gameOption <1) || (gameOption>3) || (keepPlaying == 1)) {
+        cin >> gameOption;
+        cout << endl;
+        if (gameOption == 1){
+            singlePlayer(pieces, game);
+            print.printGameOver();
+            game.reset();
+        }
+        else if (gameOption == 2){
+            print.printBacktrackingMenu();
+            int backOption = 0;
+            Backtracking bt = Backtracking();
+            while ((backOption < 1) || (backOption > 7)){
+                cin >> backOption;
+                cout << endl;
+                if (backOption == 1){
+                    Heuristic *heuristicHS = new HeuristicHighestScore();
+                    bt.addToList(heuristicHS, 1);
+                    autoPlay(pieces, game, bt);
+                    print.printGameOver();
+                }
+                else if (backOption == 2){
+                    Heuristic *heuristicR = new HeuristicLine(&game, true);
+                    bt.addToList(heuristicR, 1);
+                    autoPlay(pieces, game, bt);
+                    print.printGameOver();
+                }
+                else if (backOption == 3){
+                    Heuristic *heuristicC = new HeuristicLine(&game, false);
+                    bt.addToList(heuristicC, 1);
+                    autoPlay(pieces, game, bt);
+                    print.printGameOver();
+                }
+                else if (backOption == 4){
+                    Heuristic *heuristicC = new HeuristicLine(&game, false);
+                    Heuristic *heuristicR = new HeuristicLine(&game, true);
+                    bt.addToList(heuristicC, 0.5);
+                    bt.addToList(heuristicR, 0.5);
+                    autoPlay(pieces, game, bt);
+                    print.printGameOver();
+                }
+                else if (backOption == 5){
+                    Heuristic *heuristicSA = new HeuristicSurroundingArea(&game);
+                    bt.addToList(heuristicSA, 1);
+                    autoPlay(pieces, game, bt);
+                    print.printGameOver();
+                }
+                else if (backOption == 6){
+                    Heuristic *heuristicC = new HeuristicLine(&game, false);
+                    Heuristic *heuristicR = new HeuristicLine(&game, true);
+                    Heuristic *heuristicSA = new HeuristicSurroundingArea(&game);
+                    bt.addToList(heuristicC, 0.2);
+                    bt.addToList(heuristicR, 0.2);
+                    bt.addToList(heuristicSA, 0.6);
+                    autoPlay(pieces, game, bt);
+                    print.printGameOver();
+                }
             }
         }
-    }*/
-    ////////////////////////////// END UN JUGADOR //////////////////////////////
-    
-    /////////////////////////////// BACKTRACKING ///////////////////////////////
-    
-    Game solucion = Game();
-    //Backtracking bt;
-    bool end = false;
-    bool visitados [game.getHandSize()]; 
-    Piece hand [game.getHandSize()];
-    
-    for (int i=0; i<game.getHandSize(); i++){
-        visitados[i] = false;
+        
+        if (gameOption != 3){
+            print.printKeepMenu();
+            cin >> keepPlaying;
+            if (keepPlaying == 1){
+                print.printStartMenu();
+            }
+        }
+        else keepPlaying = 2;
     }
-    
-    Backtracking bt = Backtracking();
-    //Heuristic *heuristicC = new HeuristicLine(&game, false);
-    //Heuristic *heuristicR = new HeuristicLine(&game, true);
-    //Heuristic *heuristicHS = new HeuristicHighestScore();
-    Heuristic *heuristicSA = new HeuristicSurroundingArea(&game);
-    //bt.addToList(heuristicC, 0.5);
-    //bt.addToList(heuristicR, 0.5);
-    //bt.addToList(heuristicHS, 1);
-    bt.addToList(heuristicSA, 1);
-    
-    while (end!=true){
-        
-        game.getPiecesToPlay(pieces, hand);
-        
-        for (int i=0; i<game.getHandSize(); i++)
-            cout << "Pieza ID: "<< hand[i].getID() << endl;
-        int m = numeric_limits<int>::min();                     //se inicializa con el menor de los enteros.
-        solucion.reset();
-        bt.vueltaAtras(game,solucion,hand,visitados,m,game.getHandSize());
-        
-        cout << "Solucion: " << endl;
-        print.printBoard(solucion.getBoard());
-        cout << "Score de solucion: " << solucion.getScore() << endl;
-        cout << "Lineas borradas so far: " << solucion.getLinesDeleted() << endl;
-        cout << endl;
-        
-        if (solucion.getScore()==0)
-            end = true;
-        
-        game=solucion;
-        
-        //Sleep(100);
-
-    }
-    
-    ///////////////////////////// END BACKTRACKING /////////////////////////////
-    
-    print.printGameOver();
     
     return 0;
 }
-
-/** Lista de cosas para hacer:
-    * Emprolijar un poco el main (capaz hacer procedimientos apartes para el bt y el 1 jugador)
-    * Un menu piola
-    * La heuristica (x pieza)
-**/

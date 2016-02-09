@@ -11,6 +11,9 @@ public:
     void printPiece(Piece);
     void printBoard(Board);
     void printGameOver();
+    void printStartMenu();
+    void printBacktrackingMenu();
+    void printKeepMenu();
     virtual ~PrintToConsole();
 private:
 

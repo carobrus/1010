@@ -1,6 +1,7 @@
 #include "HeuristicSurroundingArea.h"
 
 HeuristicSurroundingArea::HeuristicSurroundingArea(Game * game) {
+    cout << "HeuristicSurroundingArea constructor" << endl;
     height = game->getHeight();
     width = game->getWidth();
     
@@ -59,6 +60,7 @@ int HeuristicSurroundingArea::getValue(Game game) {
     flushBoard();
     
     return ((accumulator - game.getLinesDeleted() * game.getHeight() * game.getWidth()) * (-1));
+    //return (accumulator*(-1));
 }
 
 void HeuristicSurroundingArea::flushBoard() {
@@ -81,6 +83,7 @@ void HeuristicSurroundingArea::printMatrix(){
 }
 
 HeuristicSurroundingArea::~HeuristicSurroundingArea() {
+    cout << "HeuristicSurroundingArea destructor" << endl;
     for (int r=0; r<height; r++)
         delete [] matriz[r];
     delete [] matriz;

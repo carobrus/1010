@@ -21,6 +21,7 @@ void Backtracking::vueltaAtras(Game gameAct, Game &gameSol, Piece hand [], bool 
             gameSol=gameAct;
             //cout << "Valor de resolveAux: " << resolveAux << endl;
             //cout << "Score del juego: " << gameAct.getScore() << endl;
+            //gameAct.printBoard(); int z; cin >> z;
         }
     }    
     else if (depth>0){
